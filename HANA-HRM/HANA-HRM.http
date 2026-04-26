@@ -1,0 +1,6 @@
+@HANA_HRM_HostAddress = http://localhost:5181
+
+GET {{HANA_HRM_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

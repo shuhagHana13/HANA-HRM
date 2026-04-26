@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="HANA-HRM.Domain/HANA-HRM.Domain.csproj" Id="1f6a8cb3-dea7-4cee-89c6-5ec5688b5ee3" />
+  <Project Path="HANA-HRM.Repositories/HANA-HRM.Repositories.csproj" Id="aa5e22ac-89c1-40ec-9259-d6695d3f5a5e" />
+  <Project Path="HANA-HRM.Services/HANA-HRM.Services.csproj" Id="6b876795-28e0-4eb9-8c39-b75af2c637dc" />
+  <Project Path="HANA-HRM/HANA-HRM.API.csproj" />
+</Solution>
