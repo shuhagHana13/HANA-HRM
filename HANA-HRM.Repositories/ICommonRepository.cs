@@ -21,6 +21,7 @@ namespace HANA_HRM.Repositories
         Task<List<CommonDropdownDto>> GetEducationExaminations(int idClient);
         Task<List<CommonDropdownDto>> GetProfessionalCertifications(int idClient);
         Task<List<CommonDropdownDto>> GetRelationships(int idClient);
+        Task<List<CommonDropdownDto>> GetDepartments(int idClient);
 
 
 

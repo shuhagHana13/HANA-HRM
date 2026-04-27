@@ -95,10 +95,17 @@ namespace HANA_HRM.Controllers
             return Ok(data);
         }
 
-        [HttpGet("/relationshipdropdown")]
+        [HttpGet("relationshipdropdown")]
         public async Task<IActionResult> GetRelationships([FromQuery] int idClient)
         {
             var data = await _service.GetRelationships(idClient);
+            return Ok(data);
+        }
+
+        [HttpGet("departmentsdropdown")]
+        public async Task<IActionResult> GetDepartment([FromQuery] int idClient)
+        {
+            var data = await _service.GetDepartments(idClient);
             return Ok(data);
         }
 

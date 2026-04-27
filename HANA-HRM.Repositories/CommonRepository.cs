@@ -11,7 +11,21 @@ namespace HANA_HRM.Repositories
     public class CommonRepository(AppDbContext context) : ICommonRepository
     {
         private readonly AppDbContext _context = context;
-  
+
+        public async Task<List<CommonDropdownDto>> GetDepartments(int idClient)
+        {
+            var data = await _context.Departments
+                   .Where(x => x.IdClient == idClient)
+                   .AsNoTracking()
+                   .Select(x => new CommonDropdownDto
+                   {
+                       Id = x.Id,
+                       Name = x.DepartName ?? string.Empty
+                   })
+                   .ToListAsync();
+            return data;
+        }
+
         public async Task<List<CommonDropdownDto>> GetDesignations(int idClient)
         {
 

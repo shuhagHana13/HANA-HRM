@@ -8,7 +8,13 @@ namespace HANA_HRM.Services
 {
     public class CommonService(ICommonRepository commonRepository) : ICommonService
     {
-        private readonly ICommonRepository _commonRepository = commonRepository;    
+        private readonly ICommonRepository _commonRepository = commonRepository;
+
+        public async Task<List<CommonDropdownDto>> GetDepartments(int idClient)
+        {
+            return await _commonRepository.GetDepartments(idClient);
+        }
+
         public async Task<List<CommonDropdownDto>> GetDesignations(int idClient)
         {
      
