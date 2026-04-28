@@ -10,7 +10,7 @@ namespace HANA_HRM.Domain.DTOs
             public int Id { get; set; }        
             public string? EmployeeName { get; set; }        
             public string? EmployeeNameBangla { get; set; }
-            public byte[]? EmployeeImage { get; set; }       
+            public string? EmployeeImage { get; set; }
             public string? FatherName { get; set; }     
             public string? MotherName { get; set; }
             public int? IdJobType { get; set; }

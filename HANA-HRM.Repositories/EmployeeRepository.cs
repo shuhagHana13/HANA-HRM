@@ -37,7 +37,7 @@ namespace HANA_HRM.Repositories
                     Id = e.Id,
                     EmployeeName = e.EmployeeName,
                     EmployeeNameBangla = e.EmployeeNameBangla,
-                    EmployeeImage = e.EmployeeImage,
+                    EmployeeImage = e.EmployeeImage != null? Convert.ToBase64String(e.EmployeeImage) : null,
                     FatherName = e.FatherName,
                     MotherName = e.MotherName,
                     IdJobType = e.IdJobType,
@@ -124,7 +124,7 @@ namespace HANA_HRM.Repositories
                 IdClient = dto.IdClient,
                 EmployeeName = dto.EmployeeName,
                 EmployeeNameBangla = dto.EmployeeNameBangla,
-                EmployeeImage = dto.EmployeeImage,
+                EmployeeImage = string.IsNullOrEmpty(dto.EmployeeImage)? null: Convert.FromBase64String(dto.EmployeeImage),
                 FatherName = dto.FatherName,
                 MotherName = dto.MotherName,
                 IdJobType = dto.IdJobType,
@@ -230,7 +230,7 @@ namespace HANA_HRM.Repositories
   
             employee.EmployeeName = dto.EmployeeName;
             employee.EmployeeNameBangla = dto.EmployeeNameBangla;
-            employee.EmployeeImage = dto.EmployeeImage;
+            employee.EmployeeImage = string.IsNullOrEmpty(dto.EmployeeImage)? employee.EmployeeImage: Convert.FromBase64String(dto.EmployeeImage);
             employee.FatherName = dto.FatherName;
             employee.MotherName = dto.MotherName;
             employee.IdJobType = dto.IdJobType;
