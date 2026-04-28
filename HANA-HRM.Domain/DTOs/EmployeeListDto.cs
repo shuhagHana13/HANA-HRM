@@ -8,6 +8,6 @@ namespace HANA_HRM.Domain.DTOs
     {
         public int EmployeeId { get; set; }
         public string? EmployeeName { get; set; }
-        public string? DesignationName { get; set; }
+        public string? DesignationName { get; set; }= string.Empty;
     }
 }

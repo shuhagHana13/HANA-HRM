@@ -33,12 +33,17 @@ namespace HANA_HRM.Controllers
         }
 
 
+
         [HttpPost]
         public async Task<IActionResult> CreateEmployee([FromBody] EmployeeDto employeeDto,CancellationToken cancellationToken)
         {
             var id = await _employeeService.CreateEmployeeAsync(employeeDto, cancellationToken);
-            return CreatedAtRoute("GetEmployeeDetailsById", new { idClient = employeeDto.IdClient, id },new { EmployeeId = id });
+            return CreatedAtRoute( "GetEmployeeDetailsById",
+                new { idClient = employeeDto.IdClient, id },
+                new { EmployeeId = id }
+            );
         }
+
 
 
         [HttpDelete]
@@ -53,16 +58,25 @@ namespace HANA_HRM.Controllers
         }
 
 
-        [HttpPut]
-        public async Task<IActionResult> UpdateEmployee( [FromBody] EmployeeDto dto,CancellationToken cancellationToken)
+
+        [HttpPut("{employeeId}")]
+        public async Task<IActionResult> UpdateEmployee(int employeeId, [FromQuery] int idClient, [FromBody] EmployeeDto dto, CancellationToken cancellationToken)
         {
+         
+            if (employeeId != dto.Id || idClient != dto.IdClient)
+            {
+                return BadRequest(new { Message = "EmployeeId or ClientId mismatch" });
+            }
+
             var updated = await _employeeService.UpdateEmployeeAsync(dto, cancellationToken);
 
-            if (!updated){
-              return NotFound(new { Message = "Employee not found or inactive" });
-            }    
-            
-            return Ok(new{Message = "Employee updated successfully"});
+            if (!updated)
+            {
+                return NotFound(new { Message = "Employee not found or inactive" });
+            }
+
+            return Ok(new { Message = "Employee updated successfully" });
         }
+
     }
 }
