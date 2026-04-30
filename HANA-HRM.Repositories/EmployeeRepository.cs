@@ -14,7 +14,7 @@ namespace HANA_HRM.Repositories
         public async Task<List<EmployeeListDto>> GetAllEmployeesAsync(int idClient, CancellationToken cancellationToken)
         {
             var data= await _context.Employees
-                 .Where(e => e.IdClient == idClient)
+                 .Where(e => e.IdClient == idClient && e.IsActive==true)
                  .AsNoTracking()
                  .Select(e => new EmployeeListDto 
                  {
@@ -22,6 +22,7 @@ namespace HANA_HRM.Repositories
                      EmployeeName = e.EmployeeName,
                      DesignationName = e.Designation != null ? e.Designation.DesignationName : null
                  })
+                 .OrderByDescending(e=>e.EmployeeId)
                  .ToListAsync(cancellationToken);
             return data;
         }
